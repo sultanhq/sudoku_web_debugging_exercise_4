@@ -8,3 +8,9 @@ post '/' do
   @message = sudoku.solve? ? "You won" : "You lost"
   erb :home
 end
+
+get '/' do
+	@cells = sudoku.generate
+	erb :home
+end
+
