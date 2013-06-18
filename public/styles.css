@@ -1,7 +1,19 @@
 .board {
   margin: 0 auto;
-  width: 450px;
+  width: 455px;
   height: 450px;
+}
+
+.cell:nth-of-type(3n+3) {
+  border-right: 6px solid white;
+}
+
+.cell:nth-child(n+19):nth-child(-n+27) {
+  border-bottom: 10px solid white;
+}
+
+.cell:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 10px solid white;
 }
 
 .cell {
