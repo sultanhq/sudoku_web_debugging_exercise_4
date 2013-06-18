@@ -1,7 +1,10 @@
 require './lib/sudoku'
-input = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
-# input = '000000900062000000000300006084052000000060300000004007500000083000090025700100000'
+require 'sinatra'
 
-sudoku = Sudoku.new(input)
-sudoku.solve!
-puts sudoku
+post '/' do
+  cell_values = params[:cells] # extract the cell values from the params hash
+  puzzle_string = cell_values.join # convert to a string
+  sudoku = Sudoku.new(puzzle_string) # create new instance of model class
+  @message = sudoku.solve? ? "You won" : "You lost"
+  erb :home
+end
