@@ -10,7 +10,7 @@ post '/' do
 end
 
 get '/' do
-	@cells = sudoku.generate
+	@cells = Sudoku.generate
 	erb :home
 end
 

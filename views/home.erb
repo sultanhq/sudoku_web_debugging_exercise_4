@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sudoku</title>
+  </head>
+  <body>
+    <h1>Life is too short for playing Sudoku !</h1>
+
+    <form action="/" method="post">
+    <% @cells.each do |cell| %>
+    <div> <textarea name="cells"> <%= cell.value%> </textarea></div>
+    <% end %>
+    <input type="submit" value="check">
+  </form>
+
+
+  <%= @message %>
+  </body>
+</html>
+
+
+# win lose feedback

@@ -1,3 +1,5 @@
+require_relative 'cell'
+
 class Sudoku
 
   attr_reader :cells
@@ -17,7 +19,7 @@ class Sudoku
     puzzle.cells.map {|cell|  cell.value}
   end
 
-  def solve!    
+  def solve!
     while not solved? do
       @cells.each_with_index do |cell, i|
         cell.update!(common_row(i), common_column(i), common_box(i))
@@ -41,10 +43,10 @@ class Sudoku
   end
 
   def common_box(index)
-    # integer division here, possibly suboptimal    
+    # integer division here, possibly suboptimal
     initial = (index % COLUMN_SIZE)  + index/COLUMN_SIZE / BOX_SIZE * COLUMN_SIZE * BOX_SIZE
     Array.new(BOX_SIZE) {
-      cells = @cells.slice(initial, BOX_SIZE) 
+      cells = @cells.slice(initial, BOX_SIZE)
       initial += COLUMN_SIZE
       cells
     }.flatten
@@ -57,5 +59,5 @@ class Sudoku
   def to_s
     @cells.map(&:value).join
   end
-  
+
 end
