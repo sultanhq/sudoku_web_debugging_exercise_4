@@ -9,7 +9,7 @@
     <form action="/" method="post">
       <% @cells.each do |cell| %>
         <div>
-          <input type='text' name="cells[]"  value= <%= cell.value%> ></input>
+          <input type='text' name="cells[]"  value= <%= cell.to_s%> ></input>
         </div>
       <% end %>
       <input type="submit" value="check">

@@ -12,6 +12,10 @@ class Cell
     value && value != 0
   end  
 
+  def to_s
+    solved? ? value : " "
+  end
+
   def candidates=(v)
     @value = v.first if v.length == 1
     @candidates = v    
