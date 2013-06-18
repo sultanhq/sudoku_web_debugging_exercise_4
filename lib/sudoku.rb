@@ -105,6 +105,7 @@ private
     @cells = cells
   end
 
+
 end
 
 # class Sudoku

@@ -18,8 +18,7 @@ class Cell
   end
 
   def to_s
-    return '' unless solved?
-    @value.to_s
+    solved? ? value : " "
   end
 
   def solve!
