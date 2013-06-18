@@ -14,7 +14,7 @@ class Sudoku
 
   def self.generate
     puzzle = Sudoku.new '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
-    puzzle.to_s
+    puzzle.cells.map {|cell|  cell.value}
   end
 
   def solve!    

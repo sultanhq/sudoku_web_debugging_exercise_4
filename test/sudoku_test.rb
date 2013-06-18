@@ -1,5 +1,5 @@
-require '../lib/sudoku'
-require '../lib/cell'
+require_relative '../lib/sudoku'
+require_relative '../lib/cell'
 require 'minitest/autorun'
 require 'ruby-debug'
 
@@ -10,7 +10,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_generate
-    assert_equal Sudoku.generate, '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
+    assert_equal '015003002000100906270068430490002017501040380003905000900081040860070025037204600', Sudoku.generate.join
   end
 
   def test_common_row
