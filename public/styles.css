@@ -1,0 +1,22 @@
+.board {
+  margin: 0 auto;
+  width: 450px;
+  height: 450px;
+}
+
+.cell {
+  width: 45px;  
+  height: 45px;
+  display: inline-block;
+}
+
+.cell input {
+  width: 43px;
+  height: 43px;
+  text-align: center;
+  font-size: 1.2em;
+}
+/*
+* {
+  border: 1px solid red;
+}*/
