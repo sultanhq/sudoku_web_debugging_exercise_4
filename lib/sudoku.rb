@@ -1,12 +1,20 @@
 class Sudoku
 
+  attr_reader :cells
+
   SIZE = 81
   COLUMN_SIZE = 9
   BOX_SIZE = 3
 
+
   def initialize(args)
     raise "Wrong number of values given, #{SIZE} expected" unless args.length == SIZE
     @cells = args.split('').map {|v| Cell.new(v) }
+  end
+
+  def self.generate
+    puzzle = Sudoku.new '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
+    puzzle.to_s
   end
 
   def solve!    

@@ -9,6 +9,10 @@ class SudokuTest < Minitest::Test
     @sudoku = Sudoku.new '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
   end
 
+  def test_generate
+    assert_equal Sudoku.generate, '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
+  end
+
   def test_common_row
     row = @sudoku.common_row(12)
     assert_equal 9, row.length
