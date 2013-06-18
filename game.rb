@@ -6,6 +6,7 @@ post '/' do
   puzzle_string = cell_values.join # convert to a string
   sudoku = Sudoku.new(puzzle_string) # create new instance of model class
   @message = sudoku.solve? ? "You won" : "You lost"
+  @cells = sudoku.cells
   erb :home
 end
 
