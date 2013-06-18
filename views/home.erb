@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Life is too short for playing Sudoku !</h1>
-    <%= @message %>
+    <%= styled_flash %>
     <form action="/" method="post">
       <div class="board">
         <% @cells.each do |cell| %>
