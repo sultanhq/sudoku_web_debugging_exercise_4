@@ -1,5 +1,5 @@
-require '../lib/sudoku'
-require '../lib/cell'
+require_relative '../lib/sudoku'
+require_relative '../lib/cell'
 require 'minitest/autorun'
 require 'ruby-debug'
 
