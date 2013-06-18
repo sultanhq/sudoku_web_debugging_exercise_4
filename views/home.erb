@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Life is too short for playing Sudoku !</h1>
-   
+    <%= @message %>
     <form action="/" method="post">
       <div class="board">
         <% @cells.each do |cell| %>
@@ -19,7 +19,8 @@
     </form>
   
 
-  <%= @message %>
+    <a href="/new">New Game</a>
+  
   </body>
 </html>
 
