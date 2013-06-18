@@ -4,15 +4,14 @@
     <title>Sudoku</title>
   </head>
   <body>
-    <h1>Life is to short for playing Sudoku !</h1>
-    <!-- Use yield where you want content to get rendered -->
-    <%= yield %>
+    <h1>Life is too short for playing Sudoku !</h1>
+    <form action="/" method="post">
+    <% @cells.each_with_index do |cell, index| %>
+    <div> <textarea name="cells"> <%= cell.to_s %> </textarea></div>
+    <% end %>
+    <input type="submit" value="check">
+  </form>
+  <%= @message %>
   </body>
 </html>
 
-<% (0..80)
-
-<div id="0" class="cell"> <textarea </textarea></div>
-
-# win lose feedback
-<%= @message %>
