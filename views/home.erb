@@ -2,18 +2,22 @@
 <html>
   <head>
     <title>Sudoku</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <h1>Life is too short for playing Sudoku !</h1>
-
+   
     <form action="/" method="post">
-      <% @cells.each do |cell| %>
-        <div>
-          <input type='text' name="cells[]"  value= <%= cell.value%> ></input>
+      <div class="board">
+        <% @cells.each do |cell| %>
+        <div class="cell">
+          <input type='text' name="cells[]"  value= <%= cell.value%> />
         </div>
-      <% end %>
+        <% end %>
+      </div>
       <input type="submit" value="check">
     </form>
+  
 
   <%= @message %>
   </body>
