@@ -1,0 +1,34 @@
+.board {
+  margin: 0 auto;
+  width: 455px;
+  height: 450px;
+}
+
+.cell:nth-of-type(3n+3) {
+  border-right: 6px solid white;
+}
+
+.cell:nth-child(n+19):nth-child(-n+27) {
+  border-bottom: 10px solid white;
+}
+
+.cell:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 10px solid white;
+}
+
+.cell {
+  width: 45px;  
+  height: 45px;
+  display: inline-block;
+}
+
+.cell input {
+  width: 43px;
+  height: 43px;
+  text-align: center;
+  font-size: 1.2em;
+}
+/*
+* {
+  border: 1px solid red;
+}*/
