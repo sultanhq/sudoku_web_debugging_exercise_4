@@ -11,18 +11,8 @@ class SudokuTest < Minitest::Test
     @cells = @sudoku.send(:cells)
   end
 
-  def test_can_solve_really_hard_sudoku   
-    skip
-    input = "800000000003600000070090200050007000000045700000100030001000068008500010090000400"
-    sudoku = Sudoku.new input
-    sudoku.solve!
-    assert sudoku.solved?
-    puts
-    puts sudoku.to_board
-  end
-
   def test_generate
-    assert_equal '812753649943682175675491283154237896369845721287169534521974368438526917796318452', Sudoku.generate.join
+    assert_kind_of(Sudoku, Sudoku.generate)
   end
 
   def test_can_solve_hard_problems        
@@ -44,9 +34,15 @@ class SudokuTest < Minitest::Test
   end
 
   def test_solve_empty    
-    skip
     input = '0' * 81
     sudoku = Sudoku.new(input)
+    sudoku.solve!
+    assert sudoku.solved?
+  end
+
+  def test_can_solve_really_hard_sudoku   
+    input = "800000000003600000070090200050007000000045700000100030001000068008500010090000400"
+    sudoku = Sudoku.new input
     sudoku.solve!
     assert sudoku.solved?
     puts
@@ -89,3 +85,5 @@ class SudokuTest < Minitest::Test
   end
 
 end
+  
+
