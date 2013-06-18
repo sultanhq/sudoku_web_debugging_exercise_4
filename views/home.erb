@@ -5,7 +5,7 @@
   </head>
   <body>
     <h1>Life is too short for playing Sudoku !</h1>
-
+    <%= @message %>
     <form action="/" method="post">
       <% @cells.each do |cell| %>
         <div>
@@ -15,7 +15,7 @@
       <input type="submit" value="check">
     </form>
 
-  <%= @message %>
+  
   </body>
 </html>
 
