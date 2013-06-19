@@ -12,11 +12,11 @@ end
 
 class SudokuWeb < Sinatra::Application
 
-include HelperMethods
+include Sinatra::HelperMethods
 
   post '/' do  
-    puzzle_string = convert_values_array_to_string(params[:cells])
-    flash[:info] = problem_solved?(puzzle_string) ? "Perfect. Well done. Click new game to play again." : ["Keep trying.", "You're nearly there", "Almost, but not quite.", "Nah. You're just guessing now."].sample
+    puzzle_string = convert_values_array_to_string(params[:cells])    
+    flash[:info] = problem_solved?(puzzle_string, session[:sudoku_string]) ? "Perfect. Well done. Click new game to play again." : ["Keep trying.", "You're nearly there", "Almost, but not quite.", "Nah. You're just guessing now."].sample
     session[:current_sudoku] = puzzle_string
     redirect to('/')
   end
@@ -39,17 +39,5 @@ include HelperMethods
     @cells = Sudoku.new(session[:current_sudoku]).cells
     erb :home
   end
-
-  def set_session_cookies
-    if session[:current_sudoku]
-      sudoku_puzzle = Sudoku.new(session[:current_sudoku])
-    else
-      sudoku_puzzle = Sudoku.generate
-      session[:sudoku_string] = sudoku_puzzle.to_s
-      session[:current_sudoku] = sudoku_puzzle.to_s
-    end
-  end
-
-
 
 end
