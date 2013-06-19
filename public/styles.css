@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'bonzai';
+  src: url("bonzai.ttf") format("truetype");
+}
+
+body {
+  font-family: 'bonzai';
+}
+
+.maincontent {
+  width: 750px;
+  margin: 0 auto;
+}
+
+.flashspace {
+  height: 45px;
+}
+
+#flash {
+  text-align: center;
+  font-size: 1.8em;
+  color: red;
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin: 0;
+  margin-top: 20px;
+  padding: 0;
+}
+
 .board {
   width: 475px;
   height: 475px;
@@ -32,10 +64,26 @@ td input {
   text-align: center;
 }
 
-.button {
+button {
   padding: 5px;
-}
+  border-radius: 10px;
+  border: 2px solid #747D7D;
+  background: -webkit-linear-gradient(top, white, #747d7d);
+  font-size: 1.2em;
+  font-family: 'bonzai';
+ }
 
 button a {
   text-decoration: none;
+  color: black;
+}
+
+button a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+button:hover {
+  text-decoration: none;
+  background: -webkit-linear-gradient(top, #DFDFDF, #555252);
 }

@@ -1,5 +1,8 @@
+
 <h1>Life is too short for playing Sudoku !</h1>
-<%= styled_flash %>
+<div class="flashspace">
+  <%= styled_flash %>
+</div>  
 <form action="/" method="post">
   <div class="board">
     <table cellspacing="0">
@@ -19,6 +22,7 @@
     <div class="buttons">
       <button type="submit">Check</button>
       <button type="button"><a href="/new">New Game</a></button>
+      <button type="button"><a href="/solution">Solution</a></button>
     </div>
   </div>
 </form>
