@@ -59,6 +59,14 @@ td input {
   font-size: 1.2em;
 }
 
+input.wrong {
+  background-color: #FF6666;
+}
+
+input[value=""] {
+  background-color: transparent;
+}
+
 .buttons {
   margin-top: 15px;
   text-align: center;
