@@ -15,17 +15,19 @@ class SudokuWeb < Sinatra::Application
     sudoku_puzzle = Sudoku.new(puzzle_string) # create new instance of model class
     flash[:info] = sudoku_puzzle.solved? ? "You won" : "You lost"
     @cells = sudoku_puzzle.cells
-    # session[:sudoku_string] = sudoku_puzzle.to_s
+    session[:current_sudoku] = sudoku_puzzle.to_s
     redirect to('/')
   end
 
   get '/' do
-    if session[:sudoku_string]
-      sudoku_puzzle = Sudoku.new(session[:sudoku_string])
+    if session[:current_sudoku]
+      sudoku_puzzle = Sudoku.new(session[:current_sudoku])
     else
       sudoku_puzzle = Sudoku.generate
       session[:sudoku_string] = sudoku_puzzle.to_s
+      session[:current_sudoku] = sudoku_puzzle.to_s
     end
+    @original_puzzle = session[:sudoku_string]
     @cells = sudoku_puzzle.cells
     erb :home
   end

@@ -45,8 +45,6 @@ class SudokuTest < Minitest::Test
     sudoku = Sudoku.new input
     sudoku.solve!
     assert sudoku.solved?
-    puts
-    puts sudoku.to_board
   end
 
   def test_splitting_input_into_cells    
