@@ -33,10 +33,10 @@ include HelperMethods
     redirect to('/')
   end
 
-  get '/solution' do
-    session[:current_sudoku] = get_solved_sudoku_cells(session[:sudoku_string])
-    redirect to('/')  
-  end
+  # get '/solution' do
+  #   session[:current_sudoku] = get_solved_sudoku_cells(session[:sudoku_string])
+  #   redirect to('/')  
+  # end
 
 
   def set_session_cookies
