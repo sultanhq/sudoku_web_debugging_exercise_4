@@ -8,13 +8,12 @@
     <table cellspacing="0">
       <tbody>
         <tr>
-          <% @cells.each_with_index { |cell, i| if i % 9.0 == 0 && i != 0 %>
-              </tr><tr>
-            <% end %>
+          <% @cells.each_with_index do |cell, i| %>
+            <%= "</tr><tr>" if end_of_row?(i) %>
             <td class="cell">
-              <input type='text' class=<%= cell.value == @solved_cells[i].value ? "correct" : "wrong" %> name="cells[]" maxlength="1" pattern="[1-9]" title="Please input a number between 1-9" <%= "value=#{cell.to_s}"%> "" <%= "readonly" if cell.value == @starting_cells[i].value && cell.value == @solved_cells[i].value %> >
+              <input type='text' <%= cell_html_class(cell, @solved_cells[i]) %> name="cells[]" maxlength="1" pattern="[1-9]" title="Please input a number between 1-9" <%= "value=#{cell.to_s}"%> "" <%= "readonly" if cell.value == @starting_cells[i].value && cell.value == @solved_cells[i].value %> >
             </td>
-          <% } %>
+          <% end %>
         </tr>
       </tbody>
     </table>
