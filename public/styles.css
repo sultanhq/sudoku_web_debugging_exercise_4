@@ -2,7 +2,6 @@
   margin: 0 auto;
   width: 475px;
   height: 475px;
- /* border: 1px solid blue;*/
 }
 
 table
@@ -21,7 +20,6 @@ tr:nth-of-type(3n+3)  {
 
 td input {
   border: 1px solid gray;
-  border-radius: 10px;
   width: 42px;
   height: 42px;
   text-align: center;
