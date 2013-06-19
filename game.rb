@@ -4,7 +4,10 @@ require 'sinatra/flash'
 
 
 configure do
-  enable :sessions
+  use Rack::Session::Cookie, :key => 'rack.session',
+                              :path => '/',
+                              :expire_after => 2592000, # In seconds
+                              :secret => 'I am the secret code to encrypt the cookie'  
 end
 
 class SudokuWeb < Sinatra::Application
