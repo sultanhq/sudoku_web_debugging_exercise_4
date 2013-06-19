@@ -12,13 +12,9 @@ end
 
 class SudokuWeb < Sinatra::Application
 
-  post '/' do
-    cell_values = params[:cells] # extract the cell values from the params hash
-    puzzle_string = cell_values.map {|x| x == "" ? "0" : x}.join # convert to a string
-    sudoku_puzzle = Sudoku.new(puzzle_string) # create new instance of model class
-    flash[:info] = sudoku_puzzle.solved? ? "You won" : "You lost"
-    @cells = sudoku_puzzle.cells
-    session[:current_sudoku] = sudoku_puzzle.to_s
+  post '/' do    
+    flash[:info] = problem_solved?(params[:cells]) ? "You won" : "You lost"
+    update_current_sudoku_cookie(params[:cells])
     redirect to('/')
   end
 
@@ -30,7 +26,6 @@ class SudokuWeb < Sinatra::Application
       session[:sudoku_string] = sudoku_puzzle.to_s
       session[:current_sudoku] = sudoku_puzzle.to_s
     end
-    @original_puzzle = session[:sudoku_string]
     @cells = sudoku_puzzle.cells
     erb :home
   end
@@ -38,6 +33,17 @@ class SudokuWeb < Sinatra::Application
   get '/new' do
     session.clear
     redirect to('/')
+  end
+
+  def problem_solved?(cell_values)
+    puzzle_string = cell_values.map {|x| x == "" ? "0" : x}.join # convert to a string
+    sudoku_puzzle = Sudoku.new(puzzle_string) # create new instance of sudoku with the current string
+    sudoku_puzzle.solved?
+  end
+
+  def update_current_sudoku_cookie(cell_values)
+    sudoku_puzzle = Sudoku.new(cell_values)
+    session[:current_sudoku] = sudoku_puzzle.to_s
   end
 
 end
