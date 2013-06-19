@@ -5,7 +5,7 @@ gem 'sinatra-flash'
 
 group :development do
   gem 'shotgun'
-  gem "test-unit"
+  gem "minitest"
   gem 'debugger'
   gem 'rack-test'
 end
