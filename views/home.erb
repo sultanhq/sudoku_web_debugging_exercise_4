@@ -9,11 +9,21 @@
     <%= styled_flash %>
     <form action="/" method="post">
       <div class="board">
-        <% @cells.each do |cell| %>
-       <!--  <div class="cell"> -->
-          <input type='text' name="cells[]"  value= <%= cell.to_s%> >
-     <!--    </div> -->
-        <% end %>
+        <table>
+          <tbody>
+            <tr>
+            <% @cells.each_with_index { |cell, i| if i % 9.0 == 0 && i != 0 %>
+            </tr><tr><td class="cell">
+              <input type='text' name="cells[]"  value= <%= cell.to_s%> >
+            </td>
+            <% else %>
+            <td class="cell">
+              <input type='text' name="cells[]"  value= <%= cell.to_s%> >
+            </td>
+            <% end } %>
+          </tr>
+          </tbody>
+        </table>
       </div>
       <input type="submit" value="check">
     </form>
