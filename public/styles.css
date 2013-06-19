@@ -1,30 +1,39 @@
 .board {
   margin: 0 auto;
-  width: 455px;
-  height: 450px;
+  width: 475px;
+  height: 475px;
+ /* border: 1px solid blue;*/
 }
 
-.cell:nth-of-type(3n+3) {
-  border-right: 6px solid white;
+input:nth-of-type(3n+3)  {
+ border-right: 2px solid blue;
 }
 
-.cell:nth-child(n+19):nth-child(-n+27) {
-  border-bottom: 10px solid white;
+input:nth-of-type(3n+4) {
+ border-left: 2px solid blue;
 }
 
-.cell:nth-child(n+46):nth-child(-n+54) {
-  border-bottom: 10px solid white;
+input:nth-child(n+19):nth-child(-n+27) {
+  border-bottom: 2px solid blue;
 }
 
-.cell {
+input:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 2px solid blue;
+}
+
+/*.cell {
+  margin: 0;
+  padding:0;
   width: 45px;  
   height: 45px;
   display: inline-block;
-}
+}*/
 
-.cell input {
-  width: 43px;
-  height: 43px;
+input {
+  border: 1px solid red;
+  margin-bottom: 4px;
+  width: 42px;
+  height: 42px;
   text-align: center;
   font-size: 1.2em;
 }
