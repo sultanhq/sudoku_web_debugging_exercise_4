@@ -1,6 +1,8 @@
 require_relative '../game'
+require 'minitest'
 require 'minitest/autorun'
 require 'rack/test'
+require_relative '../lib/sudoku'
 
 set :environment, :test
 
