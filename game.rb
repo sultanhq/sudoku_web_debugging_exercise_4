@@ -27,7 +27,8 @@ include HelperMethods
   end
 
   get '/solution' do
-    session[:current_sudoku] = convert_values_array_to_string(get_solved_sudoku_cells(session[:sudoku_string]))
+    cells_array = get_solved_sudoku_cells(session[:sudoku_string])
+    session[:current_sudoku] = convert_values_array_to_string(cells_array)
     redirect to('/')  
   end
 
