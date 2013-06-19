@@ -11,16 +11,16 @@
       <div class="board">
         <% @cells.each do |cell| %>
         <div class="cell">
-          <input type='text' name="cells[]"  value= <%= cell.to_s%> >
+          <input type='text' name="cells[]"  value=<%= cell.to_s%> <%= "readonly" if cell.solved? %> >
         </div>
         <% end %>
       </div>
       <input type="submit" value="check">
     </form>
-  
+
 
     <a href="/new">New Game</a>
-  
+
   </body>
 </html>
 
