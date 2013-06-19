@@ -9,11 +9,10 @@
       <tbody>
         <tr>
           <% @cells.each_with_index { |cell, i| if i % 9.0 == 0 && i != 0 %>
-          <% @solved_cells %>
               </tr><tr>
             <% end %>
             <td class="cell">
-              <input type='text' name="cells[]" maxlength="1" pattern="[1-9]" title="Please input a number between 1-9" value=<%= cell.to_s%> <%= "readonly" if cell.value == @solved_cells[i].value %> >
+              <input type='text' class=<%= cell.value == @solved_cells[i].value ? "correct" : "wrong" %> name="cells[]" maxlength="1" autocomplete="off" onClick="this.select();" pattern="[1-9]" title="Please input a number between 1-9" <%= "value=#{cell.to_s}"%> "" <%= "readonly" if cell.value == @starting_cells[i].value && cell.value == @solved_cells[i].value %> >
             </td>
           <% } %>
         </tr>

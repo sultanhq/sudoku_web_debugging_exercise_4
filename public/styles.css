@@ -59,6 +59,18 @@ td input {
   font-size: 1.2em;
 }
 
+input.wrong {
+  background-color: #FF6666;
+}
+
+input[value=""] {
+  background-color: transparent;
+}
+
+input[readonly] {
+  background-color: #D3D3D3;
+}
+
 .buttons {
   margin-top: 15px;
   text-align: center;
@@ -86,4 +98,9 @@ button a:visited {
 button:hover {
   text-decoration: none;
   background: -webkit-linear-gradient(top, #DFDFDF, #555252);
+}
+
+.cell :focus {
+  background:#99ccff; 
+  border:1px solid #b80b38;
 }

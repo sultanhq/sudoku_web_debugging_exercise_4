@@ -3,7 +3,7 @@ require 'minitest'
 require 'minitest/autorun'
 
 class HelperMethodsClass
-  include HelperMethods
+  include Sinatra::HelperMethods
 end
 
 class  TestHelperMethods < Minitest::Test
@@ -21,8 +21,8 @@ class  TestHelperMethods < Minitest::Test
   end
 
   def test_problem_solved?
-    refute @helper_methods_class_instance.problem_solved?(@puzzle_string)
-    assert @helper_methods_class_instance.problem_solved?(@solved_puzzle)
+    refute @helper_methods_class_instance.problem_solved?(@puzzle_string, @solved_puzzle)
+    assert @helper_methods_class_instance.problem_solved?(@solved_puzzle, @solved_puzzle)
   end
 
   def test_convert_values_array_to_string
