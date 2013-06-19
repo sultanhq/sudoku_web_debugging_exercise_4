@@ -10,9 +10,10 @@ module HelperMethods
     solved_sudoku.cells
   end
 
-  def problem_solved?(puzzle_string)
-    sudoku_puzzle = Sudoku.new(puzzle_string) # create new instance of sudoku with the current string
-    sudoku_puzzle.solved?
+  def problem_solved?(user_sudoku, original_puzzle)    
+    sudoku_puzzle = Sudoku.new(original_puzzle) # create new instance of sudoku with the current string
+    sudoku_puzzle.solve!
+    sudoku_puzzle.to_s == user_sudoku
   end
 
   def convert_values_array_to_string(values_array)
