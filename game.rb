@@ -13,7 +13,7 @@ post '/' do
   sudoku_puzzle = Sudoku.new(puzzle_string) # create new instance of model class
   flash[:info] = sudoku_puzzle.solved? ? "You won" : "You lost"
   @cells = sudoku_puzzle.cells
-  session[:sudoku_string] = sudoku_puzzle.to_s
+  # session[:sudoku_string] = sudoku_puzzle.to_s
   redirect to('/')
 end
 
