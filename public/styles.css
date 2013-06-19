@@ -99,3 +99,8 @@ button:hover {
   text-decoration: none;
   background: -webkit-linear-gradient(top, #DFDFDF, #555252);
 }
+
+.cell :focus {
+  background:#99ccff; 
+  border:1px solid #b80b38;
+}
