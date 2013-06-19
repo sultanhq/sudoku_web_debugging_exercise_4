@@ -25,11 +25,6 @@ module Sinatra
       (index % 9 == 0) && (index != 0)
     end
 
-    def cell_html_class(current_cell, solved_cell)
-      current_cell.value == solved_cell.value ? "class='correct'" : "class='wrong'"
-    end
-
-
 
     #### WARNING ########
     # no test coverage for set_session_cookies

@@ -36,15 +36,4 @@ include Sinatra::HelperMethods
     refute end_of_row?(10)
   end
 
-  def test_cell_html_class
-    current_cell = OpenStruct.new
-    current_cell.value    = "9"
-    solved_cell_1 = OpenStruct.new
-    solved_cell_1.value    = "9"
-    solved_cell_2 = OpenStruct.new
-    solved_cell_2.value    = "8"
-    assert_equal cell_html_class(current_cell, solved_cell_1), "class='correct'"
-    assert_equal cell_html_class(current_cell, solved_cell_2), "class='wrong'"
-  end
-
 end
