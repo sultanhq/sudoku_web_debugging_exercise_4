@@ -21,6 +21,16 @@ include HelperMethods
     redirect to('/')
   end
 
+  get '/new' do
+    session.clear
+    redirect to('/')
+  end
+
+  get '/solution' do
+    session[:current_sudoku] = convert_values_array_to_string(get_solved_sudoku_cells(session[:sudoku_string]))
+    redirect to('/')  
+  end
+
   get '/' do
     set_session_cookies
     @solved_cells = get_solved_sudoku_cells(session[:sudoku_string])
@@ -28,17 +38,6 @@ include HelperMethods
     @cells = Sudoku.new(session[:current_sudoku]).cells
     erb :home
   end
-
-  get '/new' do
-    session.clear
-    redirect to('/')
-  end
-
-  # get '/solution' do
-  #   session[:current_sudoku] = get_solved_sudoku_cells(session[:sudoku_string])
-  #   redirect to('/')  
-  # end
-
 
   def set_session_cookies
     if session[:current_sudoku]
