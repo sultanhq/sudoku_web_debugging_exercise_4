@@ -5,33 +5,23 @@
  /* border: 1px solid blue;*/
 }
 
-input:nth-of-type(3n+3)  {
- border-right: 2px solid blue;
+table
+{
+  border-collapse:collapse;
+  border: 4px solid #747D7D;
 }
 
-input:nth-of-type(3n+4) {
- border-left: 2px solid blue;
+td:nth-of-type(3n+3)  {
+ border-right: 4px solid #747D7D;
 }
 
-input:nth-child(n+19):nth-child(-n+27) {
-  border-bottom: 2px solid blue;
+tr:nth-of-type(3n+3)  {
+ border-bottom: 4px solid #747D7D;
 }
 
-input:nth-child(n+46):nth-child(-n+54) {
-  border-bottom: 2px solid blue;
-}
-
-/*.cell {
-  margin: 0;
-  padding:0;
-  width: 45px;  
-  height: 45px;
-  display: inline-block;
-}*/
-
-input {
-  border: 1px solid red;
-  margin-bottom: 4px;
+td input {
+  border: 1px solid gray;
+  border-radius: 10px;
   width: 42px;
   height: 42px;
   text-align: center;
@@ -39,5 +29,5 @@ input {
 }
 /*
 * {
-  border: 1px solid red;
+  border: 1px solid gr;
 }*/
