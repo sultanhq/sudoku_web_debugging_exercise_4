@@ -24,6 +24,7 @@ include HelperMethods
   get '/' do
     set_session_cookies
     @solved_cells = get_solved_sudoku_cells(session[:sudoku_string])
+    @starting_cells = Sudoku.new(session[:sudoku_string]).cells
     @cells = Sudoku.new(session[:current_sudoku]).cells
     erb :home
   end
