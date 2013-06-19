@@ -12,7 +12,7 @@ end
 
 class SudokuWeb < Sinatra::Application
 
-include HelperMethods
+include Sinatra::HelperMethods
 
   post '/' do  
     puzzle_string = convert_values_array_to_string(params[:cells])
@@ -39,17 +39,5 @@ include HelperMethods
     @cells = Sudoku.new(session[:current_sudoku]).cells
     erb :home
   end
-
-  def set_session_cookies
-    if session[:current_sudoku]
-      sudoku_puzzle = Sudoku.new(session[:current_sudoku])
-    else
-      sudoku_puzzle = Sudoku.generate
-      session[:sudoku_string] = sudoku_puzzle.to_s
-      session[:current_sudoku] = sudoku_puzzle.to_s
-    end
-  end
-
-
 
 end
