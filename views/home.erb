@@ -5,25 +5,24 @@
     <table cellspacing="0">
       <tbody>
         <tr>
-        <% @cells.each_with_index { |cell, i| if i % 9.0 == 0 && i != 0 %>
-        </tr><tr><td class="cell">
-          <input type='text' name="cells[]"  value=<%= cell.to_s%> <%= "readonly" if cell.solved? %> >
-          </td>
-          <% else %>
-
-          <td class="cell">
-            <input type='text' name="cells[]"  value= <%= cell.to_s%> <%= "readonly" if cell.solved? %>>
-          </td>
-        <% end } %>
+          <% @cells.each_with_index { |cell, i| if i % 9.0 == 0 && i != 0 %>
+              </tr><tr>
+            <% end %>
+            <td class="cell">
+              <input type='text' name="cells[]"  value= <%= cell.to_s%> <%= "readonly" if cell.solved? %>>
+            </td>
+          <% } %>
         </tr>
       </tbody>
     </table>
+
+    <div class="buttons">
+      <button type="submit">Check</button>
+      <button type="button"><a href="/new">New Game</a></button>
+    </div>
   </div>
-  <input type="submit" value="check">
 </form>
 
 
-<a href="/new">New Game</a>
 
- 
 
