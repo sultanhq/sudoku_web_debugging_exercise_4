@@ -12,10 +12,10 @@
         <table>
           <tbody>
             <tr>
-            <% @cells.each_with_index { |cell, i| if i % 9.0 == 0  %>
-            <td class="cell">
+            <% @cells.each_with_index { |cell, i| if i % 9.0 == 0 && i != 0 %>
+            </tr><tr><td class="cell">
               <input type='text' name="cells[]"  value= <%= cell.to_s%> >
-            </td></tr><tr>
+            </td>
             <% else %>
             <td class="cell">
               <input type='text' name="cells[]"  value= <%= cell.to_s%> >
