@@ -5,6 +5,8 @@ class Sudoku
   COLUMN_SIZE = 9
   SIZE = COLUMN_SIZE * COLUMN_SIZE
   BOX_SIZE = Math.sqrt(COLUMN_SIZE)
+  HARD = 6
+  EASY = 4
 
   attr_reader :cells
 
@@ -13,14 +15,30 @@ class Sudoku
     initialize_cells(args)
   end
 
-  def self.generate
-    puzzles = ['800000000003600000070090200050007000000045700000100030001000068008500010090000400',
-              '020030000100000050807006000080063109700092000003400600000000804060070000400000270',
-              '040170058020006090175090304308000600010802900500934007009740580604005100000080023',
-              '015003002000100906270068430490002017501040380003905000900081040860070025037204600',
-              '756210038080600504200009076810003009305840207072005400400070060900052801031008090']
-    Sudoku.new(puzzles.sample)
+  def self.generate(difficulty=EASY)
+    puzzle = Sudoku.generator.split('')
+    indexes = []
+    i = 0
+    9.times do |n|
+      indexes << (i..i+8).to_a.shuffle.shift(difficulty)
+      i = i + 9
+    end
+    indexes.flatten!
+    indexes.each { |index| puzzle[index]="0" }
+    sudoku = puzzle.join
+    Sudoku.new(sudoku)
   end
+
+  def self.generator
+    puzzle = Array.new(81,0)
+    seed = (1..9).to_a.shuffle
+    puzzle = puzzle.each_with_index.map { |value, index| value = index % 10 == 0 ? seed.shift : value }
+    solution = Sudoku.new(puzzle.join)
+    solution.solve!
+    solution.to_s
+  end
+
+
 
   def to_s
     @cells.map(&:value).join
