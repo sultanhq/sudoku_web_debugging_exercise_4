@@ -9,7 +9,7 @@
     <%= styled_flash %>
     <form action="/" method="post">
       <div class="board">
-        <table>
+        <table cellspacing="0">
           <tbody>
             <tr>
             <% @cells.each_with_index { |cell, i| if i % 9.0 == 0 && i != 0 %>
@@ -17,10 +17,12 @@
             <input type='text' name="cells[]"  value=<%= cell.to_s%> <%= "readonly" if cell.solved? %> >
             </td>
             <% else %>
+
             <td class="cell">
               <input type='text' name="cells[]"  value= <%= cell.to_s%> <%= "readonly" if cell.solved? %>>
             </td>
             <% end } %>
+
           </tr>
           </tbody>
         </table>
