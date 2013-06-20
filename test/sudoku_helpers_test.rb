@@ -1,11 +1,11 @@
-require '../lib/sudoku_helpers'
+require_relative '../lib/sudoku_helpers'
 require 'minitest'
 require 'minitest/autorun'
 require 'ostruct'
 
 
 class  TestHelperMethods < Minitest::Test
-include Sinatra::SudokuHelpers
+include SudokuHelpers
 
   def setup
     @puzzle_string = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
@@ -34,6 +34,11 @@ include Sinatra::SudokuHelpers
     assert end_of_row?(9)
     assert end_of_row?(18)
     refute end_of_row?(10)
+  end
+
+  def test_difficulty_level
+    sudoku_string = '123000000123000000123000000123000000123000000123000000123000000123000000123000000'
+    assert_equal "Hard",  difficulty_level(sudoku_string)
   end
 
 end

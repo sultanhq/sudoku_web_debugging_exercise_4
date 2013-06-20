@@ -30,6 +30,14 @@ h1 {
   padding: 0;
 }
 
+h2 {
+  font-size: 2em;
+  text-align: center;
+  margin: 0;
+  margin-top: 20px;
+  padding: 0;
+}
+
 .board {
   width: 475px;
   height: 475px;
