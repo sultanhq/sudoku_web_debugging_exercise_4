@@ -1,4 +1,4 @@
-require '../lib/sudoku_helpers'
+require_relative '../lib/sudoku_helpers'
 require 'minitest'
 require 'minitest/autorun'
 require 'ostruct'

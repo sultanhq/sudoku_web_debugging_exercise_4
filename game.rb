@@ -3,27 +3,26 @@ require 'sinatra'
 require 'sinatra/flash'
 require_relative 'lib/sudoku_helpers'
 
-
-configure do
-  use Rack::Session::Cookie, :key => 'rack.session',
-                              :path => '/',
-                              :expire_after => 2592000, # In seconds
-                              :secret => 'I am the secret code to encrypt the cookie'  
-end
-
 class SudokuWeb < Sinatra::Application
 
-helpers do
-  def generate_new_game(difficulty=Sudoku::EASY)
-    if session[:current_sudoku]
-      sudoku_puzzle = Sudoku.new(session[:current_sudoku])
-    else
-      sudoku_puzzle = Sudoku.generate(difficulty)
-      session[:sudoku_string] = sudoku_puzzle.to_s
-      session[:current_sudoku] = sudoku_puzzle.to_s
+  configure do
+    use Rack::Session::Cookie, :key => 'rack.session',
+                                :path => '/',
+                                :expire_after => 2592000, # In seconds
+                                :secret => 'I am the secret code to encrypt the cookie'  
+  end
+
+  helpers do
+    def generate_new_game(difficulty=Sudoku::EASY)
+      if session[:current_sudoku]
+        sudoku_puzzle = Sudoku.new(session[:current_sudoku])
+      else
+        sudoku_puzzle = Sudoku.generate(difficulty)
+        session[:sudoku_string] = sudoku_puzzle.to_s
+        session[:current_sudoku] = sudoku_puzzle.to_s
+      end
     end
   end
-end
 
   post '/' do  
     puzzle_string = convert_values_array_to_string(params[:cells])    
