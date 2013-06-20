@@ -1,7 +1,8 @@
 require_relative './lib/sudoku'
 require 'sinatra'
 require 'sinatra/flash'
-require_relative './lib/helper_methods'
+require_relative 'lib/sudoku_helpers'
+
 
 configure do
   use Rack::Session::Cookie, :key => 'rack.session',
@@ -12,7 +13,17 @@ end
 
 class SudokuWeb < Sinatra::Application
 
-include Sinatra::HelperMethods
+helpers do
+  def set_session_cookies
+    if session[:current_sudoku]
+      sudoku_puzzle = Sudoku.new(session[:current_sudoku])
+    else
+      sudoku_puzzle = Sudoku.generate
+      session[:sudoku_string] = sudoku_puzzle.to_s
+      session[:current_sudoku] = sudoku_puzzle.to_s
+    end
+  end
+end
 
   post '/' do  
     puzzle_string = convert_values_array_to_string(params[:cells])    
