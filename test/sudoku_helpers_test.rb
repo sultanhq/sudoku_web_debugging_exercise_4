@@ -36,4 +36,9 @@ include Sinatra::SudokuHelpers
     refute end_of_row?(10)
   end
 
+  def test_difficulty_level
+    sudoku_string = '123000000123000000123000000123000000123000000123000000123000000123000000123000000'
+    assert_equal "Hard",  difficulty_level(sudoku_string)
+  end
+
 end

@@ -32,4 +32,8 @@ class SudokuWebTest < Minitest::Test
     assert @browser.last_response.body.include? "Life is too short for playing Sudoku"
   end
 
+  def test_it_gets_the_difficulty_level
+    @browser.get '/hard'
+    assert @browser.last_response.body.include? "Difficulty: Hard"
+  end
 end

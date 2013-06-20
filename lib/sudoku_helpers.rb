@@ -29,6 +29,10 @@ module Sinatra
       @solved_cells = get_solved_sudoku_cells(session[:sudoku_string])
       @starting_cells = Sudoku.new(session[:sudoku_string]).cells
       @cells = Sudoku.new(session[:current_sudoku]).cells
+    end
+
+    def difficulty_level(session_sudoku_string)
+      session_sudoku_string.count("0") == 54 ? "Hard" : "Easy"
     end  
 
   end

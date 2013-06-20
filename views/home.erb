@@ -1,5 +1,6 @@
 
 <h1>Life is too short for playing Sudoku !</h1>
+<h2>Difficulty Level: <%= difficulty_level(session[:sudoku_string]) %></h2>
 <div class="flashspace">
   <%= styled_flash %>
 </div>  
@@ -17,7 +18,6 @@
         </tr>
       </tbody>
     </table>
-
     <div class="buttons">
       <button type="submit">Check</button>
       <button type="button"><a href="/new">New Easy Game</a></button>
