@@ -1,11 +1,11 @@
-require '../lib/helper_methods'
+require '../lib/sudoku_helpers'
 require 'minitest'
 require 'minitest/autorun'
 require 'ostruct'
 
 
 class  TestHelperMethods < Minitest::Test
-include Sinatra::HelperMethods
+include Sinatra::SudokuHelpers
 
   def setup
     @puzzle_string = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
