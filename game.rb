@@ -22,7 +22,7 @@ class SudokuWeb < Sinatra::Base
         sudoku_puzzle = Sudoku.new(session[:current_sudoku])
       else
         sudoku_puzzle = Sudoku.generate(difficulty)
-        session[:sudoku_string] = sudoku_puzzle.to_s
+        session[:set_sudoku] = sudoku_puzzle.to_s
         session[:current_sudoku] = sudoku_puzzle.to_s
       end
     end
@@ -37,12 +37,13 @@ class SudokuWeb < Sinatra::Base
       @auth ||=  Rack::Auth::Basic::Request.new(request.env)
       @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', 'admin']
     end
+
   end
 
   post '/' do
-    puzzle_string = convert_values_array_to_string(params[:cells])
-    flash[:info] = problem_solved?(puzzle_string, session[:sudoku_string]) ? "Perfect. Well done. Click new game to play again." : ["Keep trying.", "You're nearly there", "Almost, but not quite.", "Nah. You're just guessing now."].sample
-    session[:current_sudoku] = puzzle_string
+    current_puzzle_state = convert_html_puzzle_to_string params[:cells]
+    session[:current_sudoku] = current_puzzle_state
+    flash[:info] = words_of_encouragement current_puzzle_state, session[:set_sudoku]
     redirect to('/')
   end
 
@@ -66,8 +67,8 @@ class SudokuWeb < Sinatra::Base
   get '/solution' do
     protected!
     "Welcome, authenticated client"
-    cells_array = get_solved_sudoku_cells(session[:sudoku_string])
-    session[:current_sudoku] = convert_values_array_to_string(cells_array)
+    cells = get_solved_sudoku_cells(session[:set_sudoku])
+    session[:current_sudoku] = convert_html_puzzle_to_string(cells)
     redirect to('/')
   end
 

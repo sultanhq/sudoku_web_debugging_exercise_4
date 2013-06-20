@@ -23,10 +23,10 @@ include SudokuHelpers
     assert problem_solved?(@solved_puzzle, @solved_puzzle)
   end
 
-  def test_convert_values_array_to_string
+  def convert_html_puzzle_to_string
     string = "1234567"
     array = ["1","2","3","4","5","6","7"]
-    assert_equal string, convert_values_array_to_string(array)
+    assert_equal string, convert_html_puzzle_to_string(array)
   end
 
   def test_end_of_row
@@ -39,6 +39,12 @@ include SudokuHelpers
   def test_difficulty_level
     sudoku_string = '123000000123000000123000000123000000123000000123000000123000000123000000123000000'
     assert_equal "Hard",  difficulty_level(sudoku_string)
+  end
+
+  def test_words_of_encouragement
+    assert_equal "Problem solved!", words_of_encouragement(@solved_puzzle, @puzzle_string) # response to solved
+    assert_kind_of String, words_of_encouragement(@puzzle_string, @puzzle_string)          # response to unsolved
+    refute_equal "Problem solved!", words_of_encouragement(@puzzle_string, @puzzle_string) # response to unsolved
   end
 
 end

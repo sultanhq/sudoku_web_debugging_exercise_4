@@ -21,7 +21,6 @@ class SudokuTest < Minitest::Test
   end
 
   def test_can_solve_hard_problems        
-    skip
     input = [ # 295637103
       "000 200 001",
       "060 075 000",
@@ -38,8 +37,7 @@ class SudokuTest < Minitest::Test
     assert sudoku.solved?
   end
 
-  def test_solve_empty  
-    skip  
+  def test_solve_empty    
     input = '0' * 81
     sudoku = Sudoku.new(input)
     sudoku.solve!
@@ -47,7 +45,6 @@ class SudokuTest < Minitest::Test
   end
 
   def test_can_solve_really_hard_sudoku   
-    skip
     input = "800000000003600000070090200050007000000045700000100030001000068008500010090000400"
     sudoku = Sudoku.new input
     sudoku.solve!
