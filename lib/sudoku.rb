@@ -18,27 +18,18 @@ class Sudoku
   def self.generate(difficulty=EASY)
     puzzle = Sudoku.generator.split('')
     indexes = []
-    i = 0
-    9.times do |n|
-      indexes << (i..i+8).to_a.shuffle.shift(difficulty)
-      i = i + 9
-    end
-    indexes.flatten!
-    indexes.each { |index| puzzle[index]="0" }
-    sudoku = puzzle.join
-    Sudoku.new(sudoku)
+    9.times { |i| indexes << (9*i..9*i+8).to_a.shuffle.shift(difficulty) }
+    indexes.flatten.each { |index| puzzle[index]="0" }
+    Sudoku.new(puzzle.join)
   end
 
   def self.generator
-    puzzle = Array.new(81,0)
     seed = (1..9).to_a.shuffle
-    puzzle = puzzle.each_with_index.map { |value, index| value = index % 10 == 0 ? seed.shift : value }
+    puzzle = Array.new(81,0).each_with_index.map { |value, index| value = index % 10 == 0 ? seed.shift : value }
     solution = Sudoku.new(puzzle.join)
     solution.solve!
     solution.to_s
   end
-
-
 
   def to_s
     @cells.map(&:value).join
