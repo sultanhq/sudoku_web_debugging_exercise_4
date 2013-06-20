@@ -14,11 +14,11 @@ end
 class SudokuWeb < Sinatra::Application
 
 helpers do
-  def set_session_cookies
+  def generate_new_game(difficulty=Sudoku::EASY)
     if session[:current_sudoku]
       sudoku_puzzle = Sudoku.new(session[:current_sudoku])
     else
-      sudoku_puzzle = Sudoku.generate
+      sudoku_puzzle = Sudoku.generate(difficulty)
       session[:sudoku_string] = sudoku_puzzle.to_s
       session[:current_sudoku] = sudoku_puzzle.to_s
     end
@@ -37,6 +37,13 @@ end
     redirect to('/')
   end
 
+  get '/hard' do
+    session.clear
+    generate_new_game(Sudoku::HARD)
+    cells_criteria
+    erb :home
+  end  
+
   get '/solution' do
     cells_array = get_solved_sudoku_cells(session[:sudoku_string])
     session[:current_sudoku] = convert_values_array_to_string(cells_array)
@@ -44,10 +51,8 @@ end
   end
 
   get '/' do
-    set_session_cookies
-    @solved_cells = get_solved_sudoku_cells(session[:sudoku_string])
-    @starting_cells = Sudoku.new(session[:sudoku_string]).cells
-    @cells = Sudoku.new(session[:current_sudoku]).cells
+    generate_new_game
+    cells_criteria
     erb :home
   end
 

@@ -20,4 +20,16 @@ class SudokuWebTest < Minitest::Test
     assert @browser.last_response.body.include? "Life is too short for playing Sudoku"
   end
 
+  def test_it_new_easy_game_button_works
+    @browser.get '/new'
+    @browser.follow_redirect!
+    assert_equal 'http://example.org/', @browser.last_request.url
+    assert @browser.last_response.body.include? "Life is too short for playing Sudoku"
+  end
+
+  def test_it_new_hard_game_button_works
+    @browser.get '/hard'
+    assert @browser.last_response.body.include? "Life is too short for playing Sudoku"
+  end
+
 end

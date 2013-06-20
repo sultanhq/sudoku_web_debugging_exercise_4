@@ -19,13 +19,13 @@ class Sudoku
     puzzle = Sudoku.generator.split('')
     indexes = []
     9.times { |i| indexes << (9*i..9*i+8).to_a.shuffle.shift(difficulty) }
-    indexes.flatten.each { |index| puzzle[index]="0" }
+    indexes.flatten.each { |i| puzzle[i]="0" }
     Sudoku.new(puzzle.join)
   end
 
   def self.generator
     seed = (1..9).to_a.shuffle
-    puzzle = Array.new(81,0).each_with_index.map { |value, index| value = index % 10 == 0 ? seed.shift : value }
+    puzzle = Array.new(81,0).each_with_index.map { |v, i| v = i % 10 == 0 ? seed.shift : v }
     solution = Sudoku.new(puzzle.join)
     solution.solve!
     solution.to_s

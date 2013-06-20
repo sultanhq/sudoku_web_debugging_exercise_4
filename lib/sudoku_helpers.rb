@@ -25,6 +25,12 @@ module Sinatra
       (index % 9 == 0) && (index != 0)
     end
 
+    def cells_criteria
+      @solved_cells = get_solved_sudoku_cells(session[:sudoku_string])
+      @starting_cells = Sudoku.new(session[:sudoku_string]).cells
+      @cells = Sudoku.new(session[:current_sudoku]).cells
+    end  
+
   end
   helpers SudokuHelpers
 end
