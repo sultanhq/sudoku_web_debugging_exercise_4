@@ -2,13 +2,16 @@ require_relative '../game'
 require 'minitest'
 require 'minitest/autorun'
 require 'rack/test'
-require_relative '../lib/sudoku'
-
-set :environment, :test
 
 # more about testing: http://www.sinatrarb.com/testing.html
 
+
 class SudokuWebTest < Minitest::Test
+  include Rack::Test::Methods
+
+  def app
+    SudokuWeb.new
+  end
 
   def setup
     @browser = Rack::Test::Session.new(Rack::MockSession.new(SudokuWeb))

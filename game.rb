@@ -1,29 +1,31 @@
 require_relative './lib/sudoku'
-require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/flash'
-require_relative 'lib/sudoku_helpers'
+require_relative './lib/sudoku_helpers'
 
+class SudokuWeb < Sinatra::Base
 
-configure do
-  use Rack::Session::Cookie, :key => 'rack.session',
-                              :path => '/',
-                              :expire_after => 2592000, # In seconds
-                              :secret => 'I am the secret code to encrypt the cookie'  
-end
+  helpers SudokuHelpers
+  register Sinatra::Flash
 
-class SudokuWeb < Sinatra::Application
+  configure do
+    use Rack::Session::Cookie, :key => 'rack.session',
+                                :path => '/',
+                                :expire_after => 2592000, # In seconds
+                                :secret => 'I am the secret code to encrypt the cookie'
+  end
 
-helpers do
-  def set_session_cookies
-    if session[:current_sudoku]
-      sudoku_puzzle = Sudoku.new(session[:current_sudoku])
-    else
-      sudoku_puzzle = Sudoku.generate
-      session[:sudoku_string] = sudoku_puzzle.to_s
-      session[:current_sudoku] = sudoku_puzzle.to_s
+  helpers do
+    def set_session_cookies
+      if session[:current_sudoku]
+        sudoku_puzzle = Sudoku.new(session[:current_sudoku])
+      else
+        sudoku_puzzle = Sudoku.generate
+        session[:sudoku_string] = sudoku_puzzle.to_s
+        session[:current_sudoku] = sudoku_puzzle.to_s
+      end
     end
   end
-end
 
   post '/' do  
     puzzle_string = convert_values_array_to_string(params[:cells])    
