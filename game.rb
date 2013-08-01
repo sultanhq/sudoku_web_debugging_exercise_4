@@ -65,8 +65,8 @@ class SudokuWeb < Sinatra::Base
   end
 
   get '/solution' do
-    protected!
-    "Welcome, authenticated client"
+    # protected!
+    # "Welcome, authenticated client"
     cells = get_solved_sudoku_cells(session[:set_sudoku])
     session[:current_sudoku] = convert_html_puzzle_to_string(cells)
     redirect to('/')
