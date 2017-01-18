@@ -2,7 +2,6 @@ require_relative '../lib/sudoku'
 require_relative '../lib/cell'
 require 'minitest'
 require 'minitest/autorun'
-require 'ruby-debug'
 
 class SudokuTest < Minitest::Test
 
@@ -20,7 +19,7 @@ class SudokuTest < Minitest::Test
     assert_equal 81, sudoku.length
   end
 
-  def test_can_solve_hard_problems        
+  def test_can_solve_hard_problems
     input = [ # 295637103
       "000 200 001",
       "060 075 000",
@@ -37,39 +36,39 @@ class SudokuTest < Minitest::Test
     assert sudoku.solved?
   end
 
-  def test_solve_empty    
+  def test_solve_empty
     input = '0' * 81
     sudoku = Sudoku.new(input)
     sudoku.solve!
     assert sudoku.solved?
   end
 
-  def test_can_solve_really_hard_sudoku   
+  def test_can_solve_really_hard_sudoku
     input = "800000000003600000070090200050007000000045700000100030001000068008500010090000400"
     sudoku = Sudoku.new input
     sudoku.solve!
     assert sudoku.solved?
   end
 
-  def test_splitting_input_into_cells    
+  def test_splitting_input_into_cells
     assert_equal 81, @cells.length
     assert @cells.all?{|c| c.is_a? Cell}
   end
 
   def test_boxes_are_generated_correctly
-    rows = (0..80).map {|i| Cell.new(i)}.each_slice(9).to_a    
+    rows = (0..80).map {|i| Cell.new(i)}.each_slice(9).to_a
     boxes = @sudoku.send(:boxes, rows)
-    assert_equal 9, boxes.length    
+    assert_equal 9, boxes.length
     boxes.each do |box|
       assert_equal 9, box.length
       assert box.all? {|c| c.is_a? Cell}
     end
   end
 
-  def test_cells_have_references_to_corresponding_sets    
-    @cells.each do |c| 
+  def test_cells_have_references_to_corresponding_sets
+    @cells.each do |c|
       assert_equal 3, c.slices.length
-      c.slices.each do |slice| 
+      c.slices.each do |slice|
         assert slice.is_a?(Array)
         assert_equal 9, slice.length
         slice.each do |cell|
@@ -79,13 +78,11 @@ class SudokuTest < Minitest::Test
     end
   end
 
-  def test_sudoku_can_be_solved        
-    refute @sudoku.solved?    
-    @sudoku.solve!    
+  def test_sudoku_can_be_solved
+    refute @sudoku.solved?
+    @sudoku.solve!
     assert @sudoku.solved?
     assert_equal '615493872348127956279568431496832517521746389783915264952681743864379125137254698', @cells.map(&:value).join
   end
 
 end
-  
-
