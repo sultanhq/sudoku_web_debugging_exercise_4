@@ -14,7 +14,7 @@ class Cell
   end
 
   def solved?
-    @value && @value != 0
+    @value
   end
 
   def to_s

@@ -17,7 +17,7 @@ class SudokuWeb < Sinatra::Base
   helpers SudokuHelpers
 
   helpers do
-    def generate_new_game(difficulty=Sudoku::EASY)
+    def generate_new_game(difficulty=Sudoku::MEDIUM)
       if session[:current_sudoku] && session[:set_sudoku]
         sudoku_puzzle = Sudoku.new(session[:current_sudoku])
       else
@@ -50,13 +50,6 @@ class SudokuWeb < Sinatra::Base
   get '/new' do
     session.clear
     redirect to('/')
-  end
-
-  get '/hard' do
-    session.clear
-    generate_new_game(Sudoku::HARD)
-    cells_criteria
-    erb :home
   end
 
   get '/protected' do
