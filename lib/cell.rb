@@ -23,7 +23,7 @@ class Cell
   end
 
   def solve!
-    return if solved?   
+    return if solved?
     assume(candidates.first) if candidates.length == 1
   end
 
@@ -38,5 +38,5 @@ class Cell
   def neighbours
     @slices.flatten.map(&:value).inject(Set.new) {|set, digit| set << digit}.delete(0)
   end
-  
+
 end

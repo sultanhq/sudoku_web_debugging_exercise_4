@@ -18,7 +18,7 @@ class CellTest < Minitest::Test
     @cell = Cell.new(0)
     array.map {|v| Cell.new(v)}
   end
-   
+
   def test_cell_can_have_a_value
     cell = Cell.new(5)
     assert_equal 5, cell.value

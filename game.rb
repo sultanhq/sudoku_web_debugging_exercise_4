@@ -4,9 +4,9 @@ require 'sinatra/flash'
 require_relative './lib/sudoku_helpers'
 
 class SudokuWeb < Sinatra::Base
-  
+
   configure do
-    use(Rack::Session::Cookie, 
+    use(Rack::Session::Cookie,
       :key => 'rack.session',
       :path => '/',
       :expire_after => 2592000, # In seconds
@@ -15,7 +15,7 @@ class SudokuWeb < Sinatra::Base
 
   register Sinatra::Flash
   helpers SudokuHelpers
-  
+
   helpers do
     def generate_new_game(difficulty=Sudoku::EASY)
       if session[:current_sudoku] && session[:set_sudoku]

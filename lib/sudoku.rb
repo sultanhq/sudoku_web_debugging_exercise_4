@@ -1,7 +1,7 @@
 require_relative 'cell'
 
 class Sudoku
-  
+
   COLUMN_SIZE = 9
   SIZE = COLUMN_SIZE * COLUMN_SIZE
   BOX_SIZE = Math.sqrt(COLUMN_SIZE)
@@ -39,7 +39,7 @@ class Sudoku
     rows = @cells.each_slice(COLUMN_SIZE).inject([]) do |strings, row|
       strings << row.each_slice(BOX_SIZE).map{|a| a.map(&:to_s).join(" ")}.join(" | ")
     end
-    row_length = rows.first.length    
+    row_length = rows.first.length
     separator = "\n#{'-' * row_length}\n"
     rows.each_slice(BOX_SIZE).map{|s| s.join("\n")}.join(separator)
   end
@@ -48,7 +48,7 @@ class Sudoku
     @cells.all? {|cell| cell.solved? }
   end
 
-  def solve!        
+  def solve!
     outstanding_before, looping = SIZE, false
     while !solved? && !looping
       try_to_solve!
@@ -59,14 +59,14 @@ class Sudoku
     try_harder unless solved?
   end
 
-private
+  private
 
   def replicate!
     self.class.new(self.to_s)
   end
 
   def steal_solution(source)
-    initialize_cells(source.to_s)        
+    initialize_cells(source.to_s)
   end
 
   def try_harder
@@ -80,9 +80,9 @@ private
   end
 
   def try_to_solve!
-    @cells.each do |cell|        
-      cell.solve! unless cell.solved?                
-    end      
+    @cells.each do |cell|
+      cell.solve! unless cell.solved?
+    end
   end
 
   def rows(cells)
@@ -97,15 +97,15 @@ private
     end
   end
 
-  def boxes(rows)    
+  def boxes(rows)
     (0..BOX_SIZE-1).inject([]) do |boxes, i|
       relevant_rows = rows.slice(BOX_SIZE * i, BOX_SIZE)
-      boxes + relevant_rows.transpose.each_slice(BOX_SIZE).map(&:flatten)       
-    end        
+      boxes + relevant_rows.transpose.each_slice(BOX_SIZE).map(&:flatten)
+    end
   end
-  
+
   def initialize_cells(digits)
-    cells       = digits.split('').map {|v| Cell.new(v) }    
+    cells       = digits.split('').map {|v| Cell.new(v) }
     rows        = rows(cells)
     columns     = columns(cells, rows)
     boxes       = boxes(rows)
@@ -116,4 +116,3 @@ private
   end
 
 end
-
