@@ -17,7 +17,7 @@ class SudokuWeb < Sinatra::Base
   helpers SudokuHelpers
 
   helpers do
-    def generate_new_game(difficulty=Sudoku::MEDIUM)
+    def generate_new_game(difficulty=Sudoku::EASY)
       if session[:current_sudoku] && session[:set_sudoku]
         sudoku_puzzle = Sudoku.new(session[:current_sudoku])
       else
