@@ -13,6 +13,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (10.5.0)
     shotgun (0.9.2)
       rack (>= 1.0)
     sinatra (1.4.7)
@@ -30,6 +31,7 @@ DEPENDENCIES
   ci_reporter_minitest
   minitest
   rack-test
+  rake (~> 10.5.0)
   shotgun
   sinatra
   sinatra-flash
