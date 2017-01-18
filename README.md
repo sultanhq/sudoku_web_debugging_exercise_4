@@ -27,4 +27,4 @@ The goal is to get all the tests in the `test/` directory passing.
 
 * Don't change the files in the `.spec_verify/` directory.
 
-* This repo uses minitest, not rspec.
+* This repo uses **minitest**, not rspec.
